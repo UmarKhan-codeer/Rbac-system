@@ -5,19 +5,11 @@ import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { z } from 'zod';
+import { registerSchema, RegisterInput } from '@/lib/validations/auth';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
-
-const registerSchema = z.object({
-    name: z.string().min(2, 'Name must be at least 2 characters'),
-    email: z.string().email('Invalid email address'),
-    password: z.string().min(6, 'Password must be at least 6 characters'),
-});
-
-type RegisterFormData = z.infer<typeof registerSchema>;
 
 export default function RegisterPage() {
     const router = useRouter();
@@ -26,11 +18,11 @@ export default function RegisterPage() {
         register,
         handleSubmit,
         formState: { errors, isSubmitting },
-    } = useForm<RegisterFormData>({
+    } = useForm<RegisterInput>({
         resolver: zodResolver(registerSchema),
     });
 
-    const onSubmit = async (data: RegisterFormData) => {
+    const onSubmit = async (data: RegisterInput) => {
         setError(null);
         try {
             const response = await fetch('/api/auth/register', {

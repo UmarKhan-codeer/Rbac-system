@@ -5,12 +5,7 @@ import User from '@/models/User';
 import Role from '@/models/Role';
 import UserRole from '@/models/UserRole';
 import { z, ZodError } from 'zod';
-
-const registerSchema = z.object({
-    name: z.string().min(2),
-    email: z.string().email(),
-    password: z.string().min(6),
-});
+import { registerSchema } from '@/lib/validations/auth';
 
 export async function POST(req: Request) {
     try {

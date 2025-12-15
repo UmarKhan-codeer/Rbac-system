@@ -15,6 +15,7 @@ export const authOptions: NextAuthOptions = {
                 password: { label: 'Password', type: 'password' },
             },
             async authorize(credentials) {
+                console.log("Authorize called with:", { email: credentials?.email });
                 if (!credentials?.email || !credentials?.password) {
                     throw new Error('Invalid credentials');
                 }
@@ -55,6 +56,7 @@ export const authOptions: NextAuthOptions = {
     callbacks: {
         async jwt({ token, user }) {
             if (user) {
+                console.log("JWT Callback - User logged in:", user.id);
                 token.role = user.role;
                 token.roles = user.roles;
                 token.id = user.id;
@@ -62,6 +64,7 @@ export const authOptions: NextAuthOptions = {
             return token;
         },
         async session({ session, token }) {
+            // console.log("Session Callback", { sessionUser: session.user, tokenId: token.id });
             if (session.user) {
                 session.user.role = token.role as string;
                 session.user.roles = token.roles as string[];

@@ -8,7 +8,7 @@
 > **A production-grade, secure, and scalable Role-Based Access Control (RBAC) system built for the modern web.**
 
 <div align="center">
-  <a href="https://your-live-preview-link.com">
+  <a href="https://rbac-system-seven.vercel.app/">
     <img src="https://img.shields.io/badge/🚀_Live_Preview-View_Demo-2ea44f?style=for-the-badge&logo=vercel" alt="Live Preview" />
   </a>
 </div>
@@ -86,7 +86,7 @@ Follow these steps to set up the project locally.
 
 1.  **Clone the repository**
     ```bash
-    git clone https://github.com/yourusername/rbac-system.git
+    git clone https://github.com/UmarKhan-codeer/Rbac-system.git
     cd rbac-system
     ```
 
